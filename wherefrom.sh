@@ -13,7 +13,7 @@ function where_from {
   # (It also saves it somewhere else in a DB, but that is another story)
   data="$(mdls -name kMDItemWhereFroms -raw "$1")"
   # Ignoring any lines beginning with `(` or `)`, print the source
-  sources=$(printf "%s" "$data" | awk "! /^(\\(|\\))/ { print \$1 }" -)
+  sources=$(printf "%s" "$data" | awk -F"," " ! /^(\\(|\\))/ { print \$1 } " -)
   printf "%s" "$sources"
 }
 
